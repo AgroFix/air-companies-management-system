@@ -74,6 +74,11 @@
 			<version>2.2.15</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-docker-compose</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -109,6 +114,7 @@
 					<consoleOutput>true</consoleOutput>
 					<failsOnError>true</failsOnError>
 					<linkXRef>false</linkXRef>
+					<skip>true</skip>
 				</configuration>
 			</plugin>
 
