@@ -1,4 +1,3 @@
-![AIR COMPANY MANAGEMENT SYSTEM](https://upload.wikimedia.org/wikipedia/commons/f/fc/Tarom.b737-700.yr-bgg.arp.jpg)
 # ✈️ AIR COMPANY MANAGEMENT SYSTEM ✈️
 ___
 ## 👋 Introduction 👋
@@ -56,5 +55,3 @@ If you prefer to run the air company management system in a Docker container usi
 ___
 ## 💟 Thanks 💟
 Thank you for reading to the end, Good Luck!!! 🌈
-
-![App Screenshot](https://gifsec.com/wp-content/uploads/2022/10/good-luck-gif-1.gif)
