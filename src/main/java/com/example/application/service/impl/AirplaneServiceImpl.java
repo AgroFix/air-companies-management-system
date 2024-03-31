@@ -14,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AirplaneServiceImpl implements AirplaneService {
@@ -46,14 +48,16 @@ public class AirplaneServiceImpl implements AirplaneService {
     }
 
     private Airplane savedAirplane(AirplaneRequestDto airplaneRequestDto, Airplane airplane) {
-        AirCompany airCompany = airCompanyRepository
-                .findById(airplaneRequestDto.getAirCompanyId()).orElseThrow(
-                        () -> new EntityNotFoundException(CANT_FIND_AIR_COMPANY_BY_ID
-                        + airplaneRequestDto.getAirCompanyId()));
-        Airplane createdAirplane = newAirplane(airplaneRequestDto, airCompany, airplane);
+        Optional<AirCompany> airCompanyOptional = Optional.ofNullable(airplaneRequestDto.getAirCompanyId())
+                .flatMap(id -> airCompanyRepository.findById(id));
+
+        Airplane createdAirplane = airCompanyOptional.map(airCompany -> newAirplane(airplaneRequestDto, airCompany, airplane))
+                .orElseGet(() -> newAirplane(airplaneRequestDto, null, airplane));
+
         Airplane savedAirplane = airplaneRepository.save(createdAirplane);
         return createdAirplane.setId(savedAirplane.getId());
     }
+
 
     private Airplane newAirplane(
             AirplaneRequestDto requestDto, AirCompany airCompany, Airplane airplane) {
